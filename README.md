@@ -1,7 +1,7 @@
 # Kraken.Caching
 [![Nuget](https://img.shields.io/nuget/v/Kraken.Caching.svg)](https://www.nuget.org/packages/Kraken.Caching/)
-[![License: LGPL v3](https://img.shields.io/badge/License-Apache-2.0-brightgreen.svg)](LICENSE)
-[![Author](https://img.shields.io/badge/author-Martin%20Hlouöek-blue.svg)](http://www.hlousek.org)
+[![License: Apache 2.0](https://img.shields.io/badge/License-apachev2-brightgreen.svg)](LICENSE)
+[![Author](https://img.shields.io/badge/author-Martin%20Hlou≈°ek-blue.svg)](http://www.hlousek.org)
 
 Kraken.Caching is a library that generates proxy implementation to the services to the dependency injection and adds customizable caching components
 
@@ -47,7 +47,7 @@ services.AddCached<IService, Service>();
 #### Cache configuration attributes
 
 You have to use the Cached attribute to specify the cache handler to use and cache duration:
-``csharp
+```csharp
 [Cached(typeof(MemoryCache), 5)]
 ```
 You can specify Cached at the following levels:
