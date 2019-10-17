@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;netstandard1.6;net48;net472;net462;net452;net45</TargetFrameworks>
+    <Title>Kraken.Caching</Title>
+    <Summary>Kraken.Caching is a library that generates proxy implementation to the services to the dependency injection and adds customizable caching components</Summary>
+    <Description>Kraken.Caching is a library that generates proxy implementation to the services to the dependency injection and adds customizable caching components</Description>
+    <VersionPrefix>3.0.0</VersionPrefix>
+    <Version>3.0.0.0</Version>
+    <IncludeSource>false</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
+    <Company>Martin Hloušek</Company>
+    <Authors>Martin Hloušek</Authors>
+    <Copyright>Copyright © 2019 Martin Hloušek</Copyright>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AssemblyName>Kraken.Caching</AssemblyName>
+    <AssemblyOriginatorKeyFile>Kraken.Caching.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <PackageId>Kraken.Caching</PackageId>
+    <PackageProjectUrl>https://github.com/mh1/Kraken.Caching</PackageProjectUrl>
+    <LangVersion>latest</LangVersion>
+    <RepositoryUrl>https://github.com/mh1/Kraken.Caching</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Cache Proxy Dependency Injection</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <PackageRequireLincenseAcceptance>true</PackageRequireLincenseAcceptance>
+    <PackageReleaseNotes>- Added runtime class generator</PackageReleaseNotes>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.6.0" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <PackageReference Condition="'$(TargetFramework)' != 'netstandard1.6'" Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netstandard1.6'" Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <PackageReference Condition="!$(TargetFramework.StartsWith('net45'))" Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
+    <PackageReference Condition="$(TargetFramework.StartsWith('net45'))" Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+  </ItemGroup>
+</Project>

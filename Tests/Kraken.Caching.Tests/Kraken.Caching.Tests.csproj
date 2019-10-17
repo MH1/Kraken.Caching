@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.0;netcoreapp2.2;netcoreapp2.1;netcoreapp2.0;netcoreapp1.1;net48;net472;net462;net452;net45</TargetFrameworks>
+    <NetStandardImplicitPackageVersion Condition="'$(TargetFramework)' == 'netcoreapp1.6'">1.6.1</NetStandardImplicitPackageVersion>
+    <IsPackable>false</IsPackable>
+    <Configurations>Debug;Release;Solid</Configurations>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!--<TargetLatestRuntimePatch Condition="'$(TargetPlatform)' != 'netcoreapp1.6'">true</TargetLatestRuntimePatch>-->
+    <!--<RuntimeFrameworkVersion Condition="'$(TargetPlatform)' == 'netcoreapp1.6'">1.6.0</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion Condition="'$(TargetPlatform)' == 'netcoreapp2.1'">2.1.13</RuntimeFrameworkVersion>
+    <RuntimeFrameworkVersion Condition="'$(TargetPlatform)' == 'netcoreapp2.2'">2.2.7</RuntimeFrameworkVersion>-->
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <!--<Reference Include="Microsoft.CSharp" />-->
+    <!--<Reference Include="System" />-->
+    <!--<Reference Include="System.Reflection" />-->
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('netcoreapp'))">
+    <PackageReference Condition="'$(TargetFramework)' != 'netcoreapp1.1'"
+                      Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
+    <PackageReference Condition="'$(TargetFramework)' == 'netcoreapp1.1'"
+                      Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+    <PackageReference Condition="!$(TargetFramework.StartsWith('net45'))"
+                      Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
+    <PackageReference Condition="$(TargetFramework.StartsWith('net45'))"
+                      Include="Microsoft.Extensions.DependencyInjection" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(SolutionDir)Kraken.Caching\Kraken.Caching.csproj" />
+  </ItemGroup>
+</Project>
